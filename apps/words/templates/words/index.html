@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Index</title>
+      {% load static %}
+      <!-- The line above tells Django to be ready to listen for static files -->
+      <link rel="stylesheet" href="{% static 'ourApp/css/main.css' %}">
+      <!-- Put the static files in the static folder inside your app.  
+           Django collects files within all static folders and puts them within a single folder -->    
+    </head>
+    <body>
+        <h1>Random words!</h1>
+        <p> Attempt number: {{request.session.attempt}}</p>
+        <p>{{request.session.word}}</p>
+        <form action="/create" method="post">
+            {% csrf_token %}
+            <input type="submit" value="create">
+        </form>
+        <form action="/delete">
+            <button>destroy</button>
+        </form>
+    </body>
+  </html>
